@@ -199,6 +199,41 @@ cd
 			:1,$s/d/AAA/	全文搜索d替换为AAA，只替换每行第一个
 			:20s/a/b/g      第20行搜索a替换为b，全部替换
 
+4.包、压缩文件、压缩包
+包：打包（tar）
+注意：创建的包文件通常以.tar结尾
+tar -cvf test.tar examples.desktop test/
+	创建包文件test.tar，打包内容为examples.desktop test
+tar -tvf test.tar 
+	查看包文件test.tar文件中打包内容
+tar -xvf test.tar 
+	解包test.tar到当前目录下
+tar -xvf test.tar -C g
+	解包test.tar到指定目录下
+	注意：解包到指定目录必须加-C
+压缩文件(gzip):
+注意：du -sh 文件名 查看文件大小
+gzip examples.desktop 
+	压缩文件examples.desktop
+gzip -l examples.desktop.gz 
+	查看压缩文件属性examples.desktop.gz
+gzip -d examples.desktop.gz
+	解压压缩文件examples.desktop.gz到当前目录下
+压缩包(tar)
+先打包后压缩
+注意：压缩包通常以.tar.gz结尾或者以.tgz结尾
+tar -czvf test2.tar.gz examples.desktop g/
+	创建压缩包文件test2.tar.gz，打包压缩内容为examples.desktop g/
+tar -tzvf test2.tar.gz 
+	查看压缩包文件test2.tar.gz打包压缩内容
+tar -xzvf test2.tar.gz
+	解压压缩包test2.tar.gz到当前目录
+
+
+
+
+
+
 
 
 
