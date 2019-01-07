@@ -118,6 +118,47 @@ cd
 		rm -r f
 			删除当前目录下的f目录
 	
+3.文件操作
+	a.创建文件
+		touch a	
+			当前目录下创建空文件a
+		touch /home/heygor/c/b
+			/home/heygor/c目录下创建空文件b
+		重定向
+		补充 echo 打印到终端
+		>	覆盖
+		echo heygor > handsome 
+			覆盖内容heygor到handsome文件中，如果没有该文件，自动创建
+		>>	追加
+		echo handsome >> black
+			追加内容handsome到black文件中，如果没有该文件，自动创建
+		vi
+	b.复制文件
+		cp handsome c
+			复制当前目录下的handsome到当前目录下的c目录中
+		cp black write
+			复制当前目录下black文件到当前目录并且命名为write
+	c.移动文件
+		mv a a1
+			重命名a为a1(a1不存在)
+		mv b c
+			剪切b文件到c目录中(c目录存在)
+	d.删除文件
+		rm a1
+			删除当前目录下的a1文件
+		rm -r *
+			删除当前目录下所有文件
+	e.查看文件
+				
+
+
+
+	f.修改文件
+
+
+
+
+
 
 
 
