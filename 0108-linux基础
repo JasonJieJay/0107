@@ -146,6 +146,49 @@ b.管道
 	ifconfig 监控网络情况
 	df -h    监控磁盘使用率
 	mount	查看系统挂载情况
+5.ubuntu下网络设置
+	a.搜索一个IP没人使用或者使用现在的IP
+		ping 192.168.7.253
+		IP地址192.168.7.1-192.168.7.254
+		网段:192.168.7.0
+		广播地址:192.168.7.255
+	b.修改ubuntu的网卡设置
+		sudo vim /etc/network/interfaces
+		增加内容:
+		auto ens33
+		iface ens33 inet static
+		address 192.168.7.198
+		netmask 255.255.254.0
+		gateway 192.168.7.1
+		注意：修改配置后必须重启网络
+		sudo /etc/init.d/networking restart
+		注意：如果重启后不生效，重启系统
+	c.设置主机名
+		sudo vim /etc/hostname
+		heygor-Ser
+		注意：重启系统后生效
+	d.绑定主机名
+		sudo vim /etc/hosts
+		增加内容ip 主机名
+		192.168.7.253  heygor-ser
+		注意：安装系统后要设置IP，主机名，主机名绑定
+	e.启动模式
+		sudo init 0	关机
+		sudo init 3	进入字符模式
+		sudo init 5	进入图形模式
+		sudo init 6	重启
+	
+
+
+
+
+
+
+
+
+
+
+
 
 
 
