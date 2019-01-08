@@ -190,7 +190,8 @@ b.管道
 		共享的目录为         /home/heygor
 		可以进行操作的用户   *所有用户
 	        对目录的权限         rw读写
-		重启nfs服务生效
+		重启nfs服务生效      sudo /etc/init.d/nfs-kernel-server restart
+
 	c.nfs的客户端配置
 		查看nfs服务器的共享目录
 		showmount -e nfs服务器的ip
