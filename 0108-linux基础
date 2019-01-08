@@ -1,0 +1,130 @@
+1.命令回顾
+hostname
+who
+whoami
+pwd
+ls
+cd
+man
+info
+mkdir
+rm 
+cp
+mv
+touch
+echo
+cat
+less
+more
+head
+tail
+vi
+tar
+gzip
+du -sh
+2.用户和权限
+a.用户
+	/etc/passwd  存放用户配置文件
+	/etc/shadow  存放用户密码配置文件
+	/etc/group   存放组信息的位置
+	创建
+		sudo adduser simon
+			创建用户simon
+		sudo passwd simon
+			给simon用户设置密码
+	修改
+		锁定/解锁
+		sudo usermod -L simon
+			锁定simon用户
+		sudo usermod -U simon
+			解锁simon用户
+	注意：安装ssh服务(链接linux的协议)	
+		sudo apt-get install openssh-server
+	注意：远程链接linux命令
+		ssh 192.168.7.198
+		ssh simon@192.168.7.198
+	注意：远程拷贝文件
+		scp 目标 本地
+		sudo scp zelin@192.168.7.52:/etc/passwd .
+		scp 本地 目标
+		sudo scp mememda zelin@192.168.7.52:/home/zelin
+	删除
+		sudo deluser simon
+			删除用户simon
+b.权限
+	查看权限 ls -l 或者ll
+	-rw-r--r-- 1 heygor heygor 9131 1月   7 16:44 examples.desktop
+	文件属性信息
+	1.文件类型  d：目录   -：普通文件
+	2-10.文件权限
+	11.文件节点
+	12.拥有者
+	13.拥有组
+	14.文件大小
+	15.最后修改时间
+	16.文件名
+	b1.常用权限
+		r:读
+		    目录:可以列表显示
+		    文件:可以查看内容
+		w:写
+		    目录:可以在目录中新建、重命名、删除文件
+		    文件:可以修改文件内容
+		x:执行
+		    目录:可以进入
+		    文件:可执行
+	b2.权限分组
+	rw-              r--            r--
+	拥有者权限	拥有组权限      其他权限
+	b3.判断权限的过程
+	1.判断用户是否为文件拥有者，如果是，赋予拥有者权限
+	2.如果不是，判断是否为拥有组成员，如果是，赋予权限
+	3.如果不是，赋予其他人权限
+	b4.修改文件权限
+	chmod 直接修改权限
+		1.字符方式
+		u	拥有者
+		g	拥有组
+		o	其他人
+		a	所有人
+		chmod u+x examples.desktop      拥有者增加执行权限 
+		chmod g+x,o+x examples.desktop  拥有组和其他人增加执行权限
+		chmod a-x examples.desktop      所有人取消执行权限
+		2.数字方式		
+		r:4
+		w:2
+		x:1
+		-:0
+		chmod 000 examples.desktop      所有用户没有任何权限
+		chmod 777 examples.desktop 	所有用户拥有读写执行权限
+	chown 通过修改文件属主修改权限
+		sudo chown gaga examples.desktop  修改文件拥有者为gaga
+		sudo chown :bin examples.desktop  修改文件拥有组为bin
+		sudo chown heygor:heygor examples.desktop  修改文件的拥有者和拥有组为heygor
+
+
+
+
+
+
+	补充:id 用户 查看组信息
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
