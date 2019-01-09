@@ -261,6 +261,44 @@ do
         read -p "guest num: " guest
 done
 问题：每次提示输入的数字是大啦还是小啦
+=============================================
+awk 
+文本的行处理工具
+awk options 文件
+ifconfig |grep inet |grep -v inet6|grep -v 127.0.0.1|awk -F" " '{print $2}'|awk -F ":" '{print $2}'
+查看IP地址
+awk -F ":" '{print $1}' /etc/passwd	打印文件的第一列
+awk -F ":" '{print $1,$6}' /etc/passwd  打印文件的第一列和第六列
+awk -F ":" '{print $1":"$6}' /etc/passwd打印文件的第一列和第六列，中间用冒号$1,$2....$N表示第几列
+$0代表一整行
+awk -F ":" '{print $0}' /etc/passwd
+$NF表示最后一列
+awk -F ":" '{print $NF}' /etc/passwd
+NF每行有多少列
+head -3 /etc/passwd | awk -F ":" '{print NF}'
+NR当前行号
+head -5 /etc/passwd |awk -F ":" '{print NR,$1}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
