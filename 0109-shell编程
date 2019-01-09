@@ -322,6 +322,24 @@ END{
 执行时候
 awk -f test /etc/passwd
 
+sed
+字段编辑和字段替换
+删除指令     d    在查看时候屏蔽某些信息
+删除所有行   sed -e 'd' passwd  
+删除第一行   sed -e '1d' passwd
+删除1到3行   sed -e '1,3d' passwd 
+删除1,3行    sed -e '1d;3d' passwd 
+删除包含root关键字的行  sed -e '/root/d' passwd
+删除以daemon开头的行    sed -e '/^daemon/d' passwd 
+删除以bash结尾的行      sed -e '/bash$/d' passwd
+删除所有空行            sed -e '/^$/d' passwd 
+删除所有以#开头的行     sed -e '/^#/d' passwd
+
+打印所有行         sed -n -e 'p' passwd 
+打印第一行和第三行 sed -n -e '1p;3p' passwd
+打印以管理员开头的行 sed -n -e '/^root/p' passwd
+
+
 
 
 
