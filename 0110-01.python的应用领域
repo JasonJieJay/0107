@@ -1,0 +1,37 @@
+1.python应用领域
+推荐房产
+a.爬虫--[58、恋家、中原]--[光线、大小、地理位置、价格、交通、朝向、学位、评论]
+b.数据分析--[影响好房子的因素]---[光、地、价]
+c.web网站--VIP--[passwd、tel、wechat]
+d.行为分析--[喜好]--[广告]
+e.自动化测试
+f.自动化运维
+
+a.爬虫      	8-13k
+b.数据分析  	13k
+c.web开发   	10-13k
+d.机器学习(AI)  18k
+e.自动化测试    13k
+f.自动化运维    8-13k
+
+2.python的安装
+建议：35或者36
+下载：python.org
+环境：ubuntu 16.04
+
+3.开发工具
+pycharm
+eclipse+pydev
+sublime
+vi/vim
+
+4.python的运行环境
+开发工具
+python自带环境
+python 文件名
+注意：python开发文件通常以.py结尾
+
+
+
+
+
