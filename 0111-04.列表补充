@@ -32,7 +32,7 @@ b.获取列表中元素的索引
 0
 >>> 
 >>> for index,value in enumerate(l):
-...     print('索引是:'+str(index)+' 值是'+value)
+...     print('索引是:'+str(index)+' 值是'+str(value))
 ... 
 索引是:0 值是smy
 索引是:1 值是wsz
