@@ -1,0 +1,73 @@
+学习目标
+掌握函数的参数传递的方法
+
+课程内容
+a.函数的形参和实参
+b.参数传递-实参位置
+c.参数传递-关键字参数
+d.参数传递-参数默认值
+e.参数传递-不定长参数
+
+
+a.函数的形参和实参
+def print_name(name):
+	print('hello %s'%name)
+print_name('o8ma')
+例子中形参是定义函数括号中的name，实参是调用函数时候传入的o8ma
+定义在函数体内是形参，调用时候传入参数是实参
+
+b.参数传递-实参位置
+函数允许定义多个形参，通过形参和实参对应顺序就是实参位置，只有位置一致才能匹配
+def animal(pet1,pet2):
+        print(pet1+' wang!'+pet2+' miao')
+animal('dog','cat')
+animal('cat','dog')
+
+c.参数传递-关键字参数
+def animal(pet1,pet2):
+        print(pet1+' wang!'+pet2+' miao')
+
+animal(pet2='cat',pet1='dog')
+
+d.参数传递-参数默认值
+函数在定义时候设置函数形参，每个形参设置默认值，当函数调用时候如果没有实参，就是形参
+def animal(pet2,pet1='2ha'):
+        print(pet1+' wang!'+pet2+' miao')
+animal('bosi')
+animal('pig','out man')
+
+e.参数传递-不定长参数
+有时候一个函数处理比当初生命更多的参数叫做不定长参数
+def test(x,y,*args):
+        print(x,y,args)
+test(1,2,'heygor','o8ma')
+注意：*args位置参数传入装配为元组类型
+def test1(x,y,**args):
+        print(x,y,args)
+test1(1,2,a=9,b=20,c='simida')
+注意：**args位置参数传入装配成字典类型
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
