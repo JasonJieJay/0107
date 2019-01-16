@@ -1,0 +1,64 @@
+1.表结构的创建
+	表：行、列、名字
+	a.数据类型
+		字符串 char  varchar
+		数字   int
+		日期   date
+	注意：char和varchar区别(char是定长，varchar是变长)
+		char(10)  --6 ----char(10)    速度快
+		varchar(10) --6 ---varchar(6) 节省空间
+	注意：字符串一定要定义最多放置多少字符串
+	b.表结构的创建
+	语法：create table 表(
+			列名  数据类型,
+			列名  数据类型,
+			...
+		);
+	例子：创建表韩国(kr),泡菜名字(pname)字符类型，泡菜价格(price)数字类型，出厂日期ddate
+	create table kr(
+		pname char(10),
+		price int,
+		ddate date
+	);
+	补充：创建数据库 create database test;
+	补充：查看表结构  desc kr;
+	c.约束
+	主键：列中的数据不能为空，每个条件只能搜索到1条数据(数据唯一)，每张表中只能有一个主键
+	唯一：每个条件只能搜索到1条数据(数据唯一)，表中可以有多个，主要作为主键约束的补充
+	非空：列中的数据不能为空
+	检查：列中的数据是否满足条件
+	外键(参考)：列中的数据依赖于另外一张表中的数据
+2.SQL语句
+	结构化查询语言
+	DDL：数据库定义语言   create alter drop truncate
+	DML：数据库操作语言   insert update  delete
+	DCL：数据库控制语言   grant revoke
+	DQL：数据库查询语言   select
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
