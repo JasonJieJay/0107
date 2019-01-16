@@ -34,8 +34,55 @@
 	DML：数据库操作语言   insert update  delete
 	DCL：数据库控制语言   grant revoke
 	DQL：数据库查询语言   select
+3.数据的新增
+	注意：字符、日期类型使用单引号
+	      数字类型直接使用
+	a.向表中所有列新增数据
+	语法：insert into 表 values(值1,值2...);
+	注意：数据的顺序和列的顺序必须一致，列的数据类型和值的数据类型必须一致
+	例子：向kr表中新增数据，名字chui，价格2500,出厂日期 2018-01-01
+	insert into kr values('chui',2500,'2018-01-01');
+	b.向表中指定列新增数据
+	语法：insert into 表(列1,列2) values(值1,值2);
+	例子：向kr表中新增数据，名字hey，价格2900,出厂日期 1986-01-01
+	insert into kr(pname,price,ddate) values('hey',2900,'1986-01-01');
+	例子：向kr表中新增数据，名字为55k，价格251
+	insert into kr(pname,price) values('55k',251);
+	c.新增多条数据
+	insert into kr(pname,price) values('simida',100),('kouniqiwa',200),('haleshao',300);
+4.数据的修改
+	注意：字符、日期类型使用单引号
+	数字类型直接使用
+	语法：update 表 set 列=值 where 条件;
+	注意：如果增加where条件，修改的是指定行的的列，如果不加是修改整个列的数据
+	例子：修改kr表中名字55k的价格为0
+	update kr set price=0 where pname='55k';
+	例子：修改kr表中price为1000
+	update kr set price=1000;
+5.数据的删除
+	delete		可以删除指定数据，删除数据可以找回，DML
+	truncate	只能删除所有数据，删除数据无法找回，DDL
+	delete语法：
+	delete from 表 where 条件;
+	例子：删除kr表中名字是55k的所有数据
+	delete from kr where pname='55k';
+	例子：删除kr表中所有数据
+	delete from kr ;
+	truncate语法：
+	truncate table 表;
+	例子：删除kr表中所有数据
+	truncate table kr;
+补充：删除表结构(数据也被删除)
+	drop table 表名;
+	删除kr表
+	drop table kr;
 
 
+
+
+
+
+	
 
 
 
