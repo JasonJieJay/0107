@@ -75,25 +75,87 @@
 补充：删除表结构(数据也被删除)
 	drop table 表名;
 	删除kr表
-	drop table kr;
-
+	drop table kr
 补充：
- 80         sakila样例数据库安装
- 81         a.下载
- 82         https://dev.mysql.com/doc/index-other.html
- 83         b.进入到压缩包所在目录
- 84         cd 下载
- 85         c.解压压缩包到当前目录下
- 86          tar -xzvf sakila-db.tar.gz
- 87         d.进入到已经解压的目录中(sakila-data.sql所在目录)
- 88         cd sakila-db/
- 89         e.登录mysql数据库
- 90         mysql -u root -p
- 91         f.导入数据库的表结构
- 92         source sakila-schema.sql;
- 93         g.导入数据库的数据库
- 94         source sakila-data.sql;
- 95 
+	sakila样例数据库安装
+	a.下载
+	https://dev.mysql.com/doc/index-other.html
+	b.进入到压缩包所在目录
+	cd 下载
+	c.解压压缩包到当前目录下
+	 tar -xzvf sakila-db.tar.gz 
+	d.进入到已经解压的目录中(sakila-data.sql所在目录)
+	cd sakila-db/
+	e.登录mysql数据库
+	mysql -u root -p
+	f.导入数据库的表结构
+	source sakila-schema.sql;
+	g.导入数据库的数据库
+	source sakila-data.sql;
+10.数据的查询
+	查询可以查询指定的行，指定的列，指定行的列
+	语法：select 列 from 表 [where 条件];
+	例子：
+	查询city表中所有数据
+	select * from city;
+	select city_id,city,country_id,last_update from city;
+	注意：*代表所有列
+	查询city表中城市名称是Weifang的所有信息
+	select * from city where city='Weifang';
+	查询city表中所有城市的名称
+	select city from city;
+	查询city表中城市名称为Yingkou的country_id
+	select country_id from city where city='Yingkou';
+	a.where条件
+	a1.比较运算符
+		>	大于
+		<	小于
+		=	等于
+		>=	大于等于
+		<=	小于等于
+		<>	不等于
+		!=	不等于
+	注意：=>   =< 非正常写法
+	例子：查询customer表中customer_id小于100的所有信息
+	select * from customer where customer_id<100;
+	例子：查询customer表中名字不是Long的所有信息
+	select * from customer where first_name<>'LONG';
+	a2.关系运算符
+		and	同时满足条件
+		or	满足一个条件即可
+		not	不满足条件
+	例子：查询customer表中customer_id范围在100和110之间所有人员的名字
+	select first_name from customer where customer_id >=100 and customer_id<=110;
+	例子：查询customer表中名字是Mike或者heygor的所有信息
+	select * from customer where first_name='Mike' or first_name='heygor';
+	a3.区间
+	between...and...
+	包括两个端点，小在前，大在后
+	例子：查询customer表中customer_id范围在100和110之间所有人员的名字
+	select first_name from customer where customer_id between 100 and 110;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
