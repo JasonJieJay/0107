@@ -77,6 +77,23 @@
 	删除kr表
 	drop table kr;
 
+补充：
+ 80         sakila样例数据库安装
+ 81         a.下载
+ 82         https://dev.mysql.com/doc/index-other.html
+ 83         b.进入到压缩包所在目录
+ 84         cd 下载
+ 85         c.解压压缩包到当前目录下
+ 86          tar -xzvf sakila-db.tar.gz
+ 87         d.进入到已经解压的目录中(sakila-data.sql所在目录)
+ 88         cd sakila-db/
+ 89         e.登录mysql数据库
+ 90         mysql -u root -p
+ 91         f.导入数据库的表结构
+ 92         source sakila-schema.sql;
+ 93         g.导入数据库的数据库
+ 94         source sakila-data.sql;
+ 95 
 
 
 
