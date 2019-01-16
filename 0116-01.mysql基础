@@ -133,6 +133,44 @@
 	包括两个端点，小在前，大在后
 	例子：查询customer表中customer_id范围在100和110之间所有人员的名字
 	select first_name from customer where customer_id between 100 and 110;
+	a4.模糊查询
+	当信息不完整时候，使用模糊查询，通常和字符串类型一起使用
+	like
+	%	任意个字符
+	_	一个字符
+	例子：查询customer表中名字以M开头的所有信息
+	select * from customer where first_name like 'M%';
+	例子：查询customer表中名字以E结尾的所有信息
+	select * from customer where first_name like '%E';
+	例子：查询customer表中名字是6个字符的所有信息
+	select * from customer where first_name like '______';
+	a5.空值查询
+	空没有任何数据类型，没有任何值
+	不能用于比较和运算
+	查询时候使用is null或者is not null
+	查询kr表中ddate为空的所有信息
+	select * from kr where ddate is null;
+	查询kr表中ddate不为空的所有信息
+	select * from kr where ddate is not null;
+	a6.in(在...里面)
+	或的关系
+	例子：查询customer表中名字是Mike或者heygor的所有信息
+	select * from customer where first_name in ('Mike','heygor')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
