@@ -76,28 +76,38 @@ c.分组后过滤
 	每个门店，每天营业额
 	group by 门店,天
 
+==================================================
+mysql的排序和分页
+排序
+语法：select 列  from  表
+	where 条件
+		group by 分组条件
+			having 分组后过滤条件
+				order by 排序条件
+顺序(从小到大)
+	order by 列;
+	order by 列 asc
+	例子：查询city表中所有数据，按照country_id从小到大进行排列
+	select * from city order by country_id;
+
+逆序(从大到小)
+	order by 列 desc;
+	查询city表中所有数据，按照city_id从大到小进行排列
+	select * from city order by city_id desc;
+
+分页查询(limit)
+	例子：查询city表中前8行数据
+	select * from city limit 8;
+	例子：查询city表中9-19行数据
+	select * from city limit 8,11;
 
 
-查询每个地区有多少个客户
-address
-cusotmer
-select  a.district,count(*)  from  address a,customer c
-where a.address_id=c.address_id
-group  by a.district;
-查询地区客户数量大于5的对应的国家名称
-select  a.district  from  address a,customer c
-where a.address_id=c.address_id
-group  by a.district
-having count(*)>5;
 
-select   distinct(co.country)
-from city c,country co,address a
-where c.country_id=co.country_id
-and c.city_id=a.city_id
-and a.district in (select  a.district  from  address a,customer c
-where a.address_id=c.address_id
-group  by a.district
-having count(*)>5);
+
+
+
+
+
 
 
 
