@@ -79,7 +79,27 @@ c.分组后过滤
 
 
 查询每个地区有多少个客户
+address
+cusotmer
+select  a.district,count(*)  from  address a,customer c
+where a.address_id=c.address_id
+group  by a.district;
 查询地区客户数量大于5的对应的国家名称
+select  a.district  from  address a,customer c
+where a.address_id=c.address_id
+group  by a.district
+having count(*)>5;
+
+select   distinct(co.country)
+from city c,country co,address a
+where c.country_id=co.country_id
+and c.city_id=a.city_id
+and a.district in (select  a.district  from  address a,customer c
+where a.address_id=c.address_id
+group  by a.district
+having count(*)>5);
+
+
 
 
 
