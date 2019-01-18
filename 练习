@@ -1,0 +1,12 @@
+#coding=utf-8
+import pymysql
+conn=pymysql.connect(host='localhost',user='root',passwd='test',db='test',port=3306,charset='utf8')
+cur=conn.cursor()
+b=input('请输入列名')
+a=input('请输入值')
+cur.execute("select * from kr where %s='%s'"% (b,a))
+data=cur.fetchall()
+for i in data:
+        print('商品的名称是： '+i[0]+'商品的价格是： '+str(i[1]))
+cur.close()
+conn.close()
