@@ -5,7 +5,7 @@
 		ubuntu：dkpg -i 软件包
 		rhel：rpm -ivh 软件包
 	c.自动安装
-、		ubuntu：apt-get install
+		ubuntu：apt-get install
 		rhel: yum install
 2.软件安装流程
 	a.安装操作系统
@@ -81,3 +81,67 @@
 			ping ubuntu的IP
 			ubuntu
 			ping rhel的IP
+	补充：删除用户simon 用户  userdel -r simon 
+	补充：vmware-tools安装
+		1.解压.tar.gz文件到指定目录
+		2.进入到解压的目录中
+		3.指定./vmware-install.pl
+		4.如果仍然有问题重启客户机
+	补充：linux的启动模式
+		init 0 	关机
+		init 3	进入字符界面
+		init 5	进入图形界面
+		init 6 	重启
+		配置文件：/etc/inittab
+	5.主机名设置
+		临时设置主机名 hostname heygor.com.cn
+		永久修改配置   /etc/sysconfig/network种hostname=xxx
+	6.绑定主机名
+		vim /etc/hosts
+		IP   主机名
+		192.168.6.222 heygor.com.cn
+	7.安装软件 
+		软件安装基础
+		常用软件都是在光盘中，版本较低
+		如果需要安装最新版软件，到官网下载
+		rhel的软件安装包都是.rpm结尾
+		rhel的软件安装包都在光盘的Server目录下
+		安装软件vsftpd
+		a.准备
+		b.加载光驱
+			标签--cd/dvd--光盘映像文件--save
+		c.挂载光驱
+			mount -o loop /dev/scd0 /mnt
+		注意：mount后光盘类型为iso9660
+		d.进入到Server目录中
+			cd /mnt/Server
+		e.搜索安装包
+			ls |grep vsftpd
+		f.安装软件包
+			rpm -ivh vsftpd-2.0.5-16.el5.i386.rpm
+		g.启动服务
+			service vsftpd start
+		h.测试
+			浏览器种输入ftp://linux的ip
+			复制文件到/var/ftp目录下共享
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
