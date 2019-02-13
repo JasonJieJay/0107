@@ -29,8 +29,55 @@
 	c.仅主机
 		客户机和宿主机的私有通道，无法和局域网进行通信
 
-
-		
-
-
-
+4.设置操作系统
+	1.防火墙
+		service iptables status		查看防火墙状态
+		service iptables start          开启防火墙
+		service iptables stop		关闭防火墙
+		service ip6tables status
+	2.selinux
+		getenforce			查看selinux状态(enforcing\permissive\disabled)
+			enforcing	强制启用selinux策略
+			permissive	提示触发selinux策略
+			disabled	关闭selinux策略
+		setenforce 0		设置selinux临时失效
+		修改配置文件
+		/etc/selinux/config		设置SELINUX=disabled
+	3.用户
+		useradd simon
+		passwd simon
+	4.网络
+		a.linux的网络设置
+		1.查看网卡信息
+			ifconfig	查看当前激活的网卡信息
+			ifconfig eth0	查看linux下第一块网卡信息
+			ifconfig -a	查看系统中所有网卡信息
+		补充：lo[本地回环网卡]
+		2.设置网卡(IP\子网掩码)
+			2.1 临时设置IP（重启网络后失效）
+				ifconfig eth0 192.168.10.100
+				注意：service network restart 重启网络服务
+			2.2 命令设置IP(重启网络后生效)
+				setup--网络设置--edit devices--eth0--名称、设备不要动，启动协议取消DHCP(空格)，设置IP和子网掩码
+				--OK--save--save&quit--exit--service network restart
+				注意：启动协议常见2种：dhcp(动态分配IP地址) static(手动设置固定IP)
+			2.3 配置文件设置IP(重启网络后生效)
+				/etc/sysconfig/network-scripts/ifcfg-eth0
+				DEVICE=eth0		设备名称
+				BOOTPROTO=static	启动协议
+				HWADDR=xxxxxxx		网卡mac地址
+				ONBOOT=yes		网卡是否随开机启动而启动，yes，是，no，否
+				NETMASK=255.255.254.0	设置子网掩码
+				IPADDR=192.168.6.222	设置IP地址
+				TYPE=Ethernet		上网类型
+				service network restart
+		b.虚拟机的网络设置
+			交换机通信条件:
+			1.网络设备正常
+			2.IP地址在同一网段
+			标签--设置--网络适配器--连接、启动时连接，桥接，复制物理网络连接状态
+		c.测试网络
+			rhel：
+			ping ubuntu的IP
+			ubuntu
+			ping rhel的IP
