@@ -26,3 +26,89 @@
 		service mysqld start
 	 	ps -ef |grep mysqld
 		netstat -an |grep 3306	
+补充：
+a.操作系统
+	win	linux  	 unix
+b.web服务器
+	apache	
+	nginx	反向代理、负载均衡
+	tomcat
+	iis
+c.数据库服务器
+	informix
+	db2
+	oracle
+	mysql
+	sqlserver
+	mongodb
+	redis
+
+d.常见搭配
+	操作系统	web服务器	数据库服务器
+	win		iis		mysql/sqlserver
+			apache		mysql
+			tomcat		mysql/oracle
+	linux		apache		mysql			（LAMP）
+			nginx		mysql			（LNMP）
+			tomcat		mysql/oracle
+
+2.部署ecshop项目
+	开发语言：php
+	web服务器：apache
+	数据库服务器：mysql
+	a.基础配置完毕
+	b.安装php相关组件
+		yum install php* -y
+	c.安装apache相关组件
+		yum install http* y
+	d.安装mysql相关组件
+		yum install mysql* -y
+	注意：注释掉httpd.conf中的svn的配置#
+	e.启动mysql服务
+		service mysqld start
+	f.启动apache服务
+		service httpd start
+	g.复制ecshop目录到/var/www/html中
+		scp -r ecshop/ root@192.168.6.222:/var/www/html
+	h.赋予权限
+		chmod 777 -R /var/www/html
+	i.根据提示安装项目
+		浏览器中输入http://linux的IP/ecshop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
