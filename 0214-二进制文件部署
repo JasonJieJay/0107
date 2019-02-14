@@ -1,0 +1,172 @@
+
+1.linux下的软件自动安装
+	a.基本设置完毕
+	b.加载光驱
+		标签--设置--cd/dvd--光盘映像--OK
+	c.创建空目录用于挂载
+		mkdir /yum
+	d.挂载光驱到上面创建出来的目录
+		mount -o loop /dev/scd0 /yum
+	e.设置yum的配置文件
+		配置文件通常在 cd /etc/yum.repos.d/目录下的.repo文件
+		 vim /etc/yum.repos.d/rhel-debuginfo.repo 
+		[test]
+		name=test
+		baseurl=file:///yum/Server    yum到哪里去找软件包
+		enabled=1		      是否开启自动安装，1是开启，0是关闭
+		gpgcheck=0		      是否开启软件包检查，1是开启，0是关闭
+	f.清理yum缓存
+		yum clean all
+	g.查看可以自动安装软件包
+		yum list
+	h.安装mysql相关组件
+		yum install mysql* -y
+	注意：-y代表自动安装依赖包
+	i.启动服务
+		service mysqld start
+	 	ps -ef |grep mysqld
+		netstat -an |grep 3306	
+补充：
+a.操作系统
+	win	linux  	 unix
+b.web服务器
+	apache	
+	nginx	反向代理、负载均衡
+	tomcat
+	iis
+c.数据库服务器
+	informix
+	db2
+	oracle
+	mysql
+	sqlserver
+	mongodb
+	redis
+
+d.常见搭配
+	操作系统	web服务器	数据库服务器
+	win		iis		mysql/sqlserver
+			apache		mysql
+			tomcat		mysql/oracle
+	linux		apache		mysql			（LAMP）
+			nginx		mysql			（LNMP）
+			tomcat		mysql/oracle
+
+2.部署ecshop项目
+	开发语言：php
+	web服务器：apache
+	数据库服务器：mysql
+	a.基础配置完毕
+	b.安装php相关组件
+		yum install php* -y
+	c.安装apache相关组件
+		yum install http* y
+	d.安装mysql相关组件
+		yum install mysql* -y
+	注意：注释掉httpd.conf中的svn的配置#
+	e.启动mysql服务
+		service mysqld start
+	f.启动apache服务
+		service httpd start
+	g.复制ecshop目录到/var/www/html中
+		scp -r ecshop/ root@192.168.6.222:/var/www/html
+	h.赋予权限
+		chmod 777 -R /var/www/html
+	i.根据提示安装项目
+		浏览器中输入http://linux的IP/ecshop
+
+
+======================================================================================
+1.二进制文件的安装
+	a.拷贝文件到linux中
+	b.解压文件到指定目录
+		tar -xzvf mongodb-linux-i686-2.4.9.tgz 
+	c.设置环境变量
+		/root/mongodb-linux-i686-2.4.9/bin
+		家目录中找到.bashrc或者.bash_profile或者/etc/profile
+		文件中PATH后面添加mongodb命令的路径
+		:/root/mongodb-linux-i686-2.4.9/bin
+		设置完环境变量后让环境变量生效
+		source .bash_profile
+	d.启动服务
+		mongodb的服务
+			mongod	mongodb的主服务
+			mongo	mongodb的客户端服务
+			27017	mongodb的端口
+		mongodb启动命令
+			mongod --dbpath /mdata
+			mongod --dbpath /mdata --logpath /mdata/mongo.log
+			mongod --dbpath /mdata --logpath /mdata/mongo.log --fork
+		注意：
+			--dbpath	数据存放的路径
+			--logpath	日志存放的位置
+			--fork		后台运行
+	e.测试
+		查看进程
+			ps -ef |grep mongod
+		查看端口
+			netstat -an |grep 27017
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
