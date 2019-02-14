@@ -108,6 +108,257 @@ d.常见搭配
 			netstat -an |grep 27017
 
 
+1.linux下的软件自动安装
+	a.基本设置完毕
+	b.加载光驱
+		标签--设置--cd/dvd--光盘映像--OK
+	c.创建空目录用于挂载
+		mkdir /yum
+	d.挂载光驱到上面创建出来的目录
+		mount -o loop /dev/scd0 /yum
+	e.设置yum的配置文件
+		配置文件通常在 cd /etc/yum.repos.d/目录下的.repo文件
+		 vim /etc/yum.repos.d/rhel-debuginfo.repo 
+		[test]
+		name=test
+		baseurl=file:///yum/Server    yum到哪里去找软件包
+		enabled=1		      是否开启自动安装，1是开启，0是关闭
+		gpgcheck=0		      是否开启软件包检查，1是开启，0是关闭
+	f.清理yum缓存
+		yum clean all
+	g.查看可以自动安装软件包
+		yum list
+	h.安装mysql相关组件
+		yum install mysql* -y
+	注意：-y代表自动安装依赖包
+	i.启动服务
+		service mysqld start
+	 	ps -ef |grep mysqld
+		netstat -an |grep 3306	
+补充：
+a.操作系统
+	win	linux  	 unix
+b.web服务器
+	apache	
+	nginx	反向代理、负载均衡
+	tomcat
+	iis
+c.数据库服务器
+	informix
+	db2
+	oracle
+	mysql
+	sqlserver
+	mongodb
+	redis
+
+d.常见搭配
+	操作系统	web服务器	数据库服务器
+	win		iis		mysql/sqlserver
+			apache		mysql
+			tomcat		mysql/oracle
+	linux		apache		mysql			（LAMP）
+			nginx		mysql			（LNMP）
+			tomcat		mysql/oracle
+
+2.部署ecshop项目
+	开发语言：php
+	web服务器：apache
+	数据库服务器：mysql
+	a.基础配置完毕
+	b.安装php相关组件
+		yum install php* -y
+	c.安装apache相关组件
+		yum install http* y
+	d.安装mysql相关组件
+		yum install mysql* -y
+	注意：注释掉httpd.conf中的svn的配置#
+	e.启动mysql服务
+		service mysqld start
+	f.启动apache服务
+		service httpd start
+	g.复制ecshop目录到/var/www/html中
+		scp -r ecshop/ root@192.168.6.222:/var/www/html
+	h.赋予权限
+		chmod 777 -R /var/www/html
+	i.根据提示安装项目
+		浏览器中输入http://linux的IP/ecshop
+
+
+======================================================================================
+1.二进制文件的安装
+	a.拷贝文件到linux中
+	b.解压文件到指定目录
+		tar -xzvf mongodb-linux-i686-2.4.9.tgz 
+	c.设置环境变量
+		/root/mongodb-linux-i686-2.4.9/bin
+		家目录中找到.bashrc或者.bash_profile或者/etc/profile
+		文件中PATH后面添加mongodb命令的路径
+		:/root/mongodb-linux-i686-2.4.9/bin
+		设置完环境变量后让环境变量生效
+		source .bash_profile
+	d.启动服务
+		mongodb的服务
+			mongod	mongodb的主服务
+			mongo	mongodb的客户端服务
+			27017	mongodb的端口
+		mongodb启动命令
+			mongod --dbpath /mdata
+			mongod --dbpath /mdata --logpath /mdata/mongo.log
+			mongod --dbpath /mdata --logpath /mdata/mongo.log --fork
+		注意：
+			--dbpath	数据存放的路径
+			--logpath	日志存放的位置
+			--fork		后台运行
+	e.测试
+		查看进程
+			ps -ef |grep mongod
+		查看端口
+			netstat -an |grep 27017
+
+
+2.linux下jdk的配置
+	a.下载jdk
+		1.操作系统
+		2.位数
+			i386 i686   32位操作系统
+			x86_64  x64 64位操作系统
+	b.jdk压缩包传入linux中
+	c.解压压缩包
+		tar -xzvf jdk-7u7-linux-i586.tar.gz
+	d.设置环境变量
+		家目录中.bash_profile 的PATH下面添加
+		jdk	java的开发环境
+		jre	java的运行环境
+		export JAVA_HOME=/root/jdk
+		export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/lib
+		export PATH=$JAVA_HOME/bin:$PATH
+	e.使环境变量生效
+		java -version	查看java的版本
+		source .bash_profile
+	f.测试
+		java
+		javac
+3.tenorder项目的部署
+	开发语言：java
+	web服务器：tomcat
+	数据库服务器：mysql
+	a.jdk设置完毕
+	b.把tomcat安装包传入linux中
+	c.解压tomcat压缩包
+		tar -xzvf apache-tomcat-7.0.91.tar.gz 
+	补充：tomcat的常见目录
+		bin	存放tomcat命令的位置
+		logs	存放tomcat日志的位置
+		webapps	存放java项目
+		conf	存放配置文件的位置
+		lib	存放库文件的位置
+	d.启动tomcat服务
+		进入到tomcat的bin目录执行
+		./sartup.sh
+	e.测试tomcat
+		tomcat服务   java
+			ps -ef |grep java
+
+		tomcat端口   8080
+			netstat -an|grep 8080
+		浏览器中输入linuxip:8080
+	f.删除webapps中所有文件
+		rm -rf /root/apache-tomcat-7.0.91/webapps/*
+	g.把tenorder目录传入webapps目录中
+		 cp -r tenorder/tenorder/  apache-tomcat-7.0.91/webapps/
+
+	h.导入数据库
+		1.给mysql设置密码
+			mysqladmin -u root password 'test'
+		2.进入到tenorder.sql文件所在目录
+		3.登录mysql
+			mysql -u root -p 
+		4.创建ten数据库	
+			create database ten;
+		5.进入到ten数据库
+			use ten;
+		6.导入tenorder.sql
+			source tenorder.sql;
+	i.修改数据库配置信息(按提示)
+		vim  WEB-INF/classes/database.properties 
+	j.重启tomcat
+		进入到tomcat的bin目录下
+		执行./shutdown.sh
+		执行./startup.sh
+	k.测试
+		浏览器输入linuxip:8080/tenorder
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
