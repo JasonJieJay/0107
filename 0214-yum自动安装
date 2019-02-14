@@ -1,0 +1,28 @@
+
+1.linux下的软件自动安装
+	a.基本设置完毕
+	b.加载光驱
+		标签--设置--cd/dvd--光盘映像--OK
+	c.创建空目录用于挂载
+		mkdir /yum
+	d.挂载光驱到上面创建出来的目录
+		mount -o loop /dev/scd0 /yum
+	e.设置yum的配置文件
+		配置文件通常在 cd /etc/yum.repos.d/目录下的.repo文件
+		 vim /etc/yum.repos.d/rhel-debuginfo.repo 
+		[test]
+		name=test
+		baseurl=file:///yum/Server    yum到哪里去找软件包
+		enabled=1		      是否开启自动安装，1是开启，0是关闭
+		gpgcheck=0		      是否开启软件包检查，1是开启，0是关闭
+	f.清理yum缓存
+		yum clean all
+	g.查看可以自动安装软件包
+		yum list
+	h.安装mysql相关组件
+		yum install mysql* -y
+	注意：-y代表自动安装依赖包
+	i.启动服务
+		service mysqld start
+	 	ps -ef |grep mysqld
+		netstat -an |grep 3306	
